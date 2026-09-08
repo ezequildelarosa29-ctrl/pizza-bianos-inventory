@@ -6,7 +6,6 @@
   <title>Pizza Bianos – Inventory Management System</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>" />
   <link rel="stylesheet" href="css/style.css" />
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
@@ -22,35 +21,22 @@
       <div class="login-hero-logo">🍕</div>
       <h1>Pizza Bianos</h1>
       <p>Inventory Management System</p>
-
       <div class="login-hero-features">
         <div class="login-hero-feature">
           <div class="icon">📦</div>
-          <div class="text">
-            <h4>Real-time Inventory Tracking</h4>
-            <p>Monitor stock levels and movements instantly</p>
-          </div>
+          <div class="text"><h4>Real-time Inventory Tracking</h4><p>Monitor stock levels and movements instantly</p></div>
         </div>
         <div class="login-hero-feature">
           <div class="icon">📊</div>
-          <div class="text">
-            <h4>Smart Analytics & Reports</h4>
-            <p>Insightful data to drive smarter decisions</p>
-          </div>
+          <div class="text"><h4>Smart Analytics &amp; Reports</h4><p>Insightful data to drive smarter decisions</p></div>
         </div>
         <div class="login-hero-feature">
           <div class="icon">🔒</div>
-          <div class="text">
-            <h4>Secure Role-Based Access</h4>
-            <p>Protected with Firebase Authentication</p>
-          </div>
+          <div class="text"><h4>Secure Role-Based Access</h4><p>Protected with Firebase Authentication</p></div>
         </div>
         <div class="login-hero-feature">
           <div class="icon">📱</div>
-          <div class="text">
-            <h4>Mobile Responsive</h4>
-            <p>Works seamlessly on any device</p>
-          </div>
+          <div class="text"><h4>Mobile Responsive</h4><p>Works seamlessly on any device</p></div>
         </div>
       </div>
     </div>
@@ -65,38 +51,23 @@
     </div>
 
     <form class="login-form" id="loginForm" autocomplete="off">
-      <!-- Alert -->
       <div class="alert-login" id="loginAlert">
         <i class="fa fa-circle-exclamation"></i>
         <span id="loginAlertMsg">Invalid email or password.</span>
       </div>
 
-      <!-- Email -->
       <div class="form-group">
         <label for="loginEmail">Username / Email</label>
         <div class="input-wrapper">
-          <input
-            type="text"
-            id="loginEmail"
-            placeholder="Enter your email"
-            autocomplete="username"
-            required
-          />
+          <input type="text" id="loginEmail" placeholder="Enter your email" autocomplete="username" required />
           <i class="fa fa-user input-icon"></i>
         </div>
       </div>
 
-      <!-- Password -->
       <div class="form-group">
         <label for="loginPassword">Password</label>
         <div class="input-wrapper">
-          <input
-            type="password"
-            id="loginPassword"
-            placeholder="Enter your password"
-            autocomplete="current-password"
-            required
-          />
+          <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required />
           <i class="fa fa-lock input-icon"></i>
           <button type="button" class="input-toggle" id="togglePassword" aria-label="Toggle password">
             <i class="fa fa-eye" id="toggleIcon"></i>
@@ -104,25 +75,20 @@
         </div>
       </div>
 
-      <!-- Remember + Forgot -->
       <div class="form-row-inline">
         <label class="checkbox-label">
-          <input type="checkbox" id="rememberMe" />
-          Remember me
+          <input type="checkbox" id="rememberMe" /> Remember me
         </label>
         <a href="#" class="forgot-link" id="forgotPasswordLink">Forgot password?</a>
       </div>
 
-      <!-- Submit -->
       <button type="submit" class="btn-login" id="loginBtn">
         <span class="btn-text"><i class="fa fa-right-to-bracket"></i>&nbsp; LOGIN</span>
         <span class="spinner"></span>
       </button>
     </form>
 
-    <div class="login-footer">
-      &copy; 2026 Pizza Bianos &bull; Inventory System
-    </div>
+    <div class="login-footer">&copy; 2026 Pizza Bianos &bull; Inventory System</div>
   </div>
 </div>
 
@@ -153,7 +119,7 @@
             <i class="fa fa-envelope input-icon"></i>
           </div>
         </div>
-        <div class="alert-login" id="resetAlert1" style="margin-top:12px;"></div>
+        <div class="alert-login" id="resetAlert1" style="margin-top:12px;display:none;"></div>
       </div>
 
       <!-- STEP 2: Enter OTP -->
@@ -164,7 +130,6 @@
           <p style="font-size:0.8rem;color:var(--gray-400);margin-top:4px;">Check your inbox (and spam folder).</p>
         </div>
 
-        <!-- OTP Input Boxes -->
         <div id="otpBoxes" style="display:flex;gap:10px;justify-content:center;margin-bottom:20px;">
           <input type="text" class="otp-box" maxlength="1" data-index="0" />
           <input type="text" class="otp-box" maxlength="1" data-index="1" />
@@ -174,13 +139,12 @@
           <input type="text" class="otp-box" maxlength="1" data-index="5" />
         </div>
 
-        <!-- Timer -->
         <div style="text-align:center;margin-bottom:16px;">
           <span style="font-size:0.82rem;color:var(--gray-500);">Code expires in </span>
           <span id="otpTimer" style="font-weight:700;color:var(--primary);">05:00</span>
         </div>
 
-        <div class="alert-login" id="resetAlert2" style="margin-top:12px;"></div>
+        <div class="alert-login" id="resetAlert2" style="margin-top:12px;display:none;"></div>
 
         <div style="text-align:center;margin-top:12px;">
           <span style="font-size:0.82rem;color:var(--gray-500);">Didn't receive it? </span>
@@ -210,14 +174,15 @@
             <i class="fa fa-lock input-icon"></i>
           </div>
         </div>
-        <div class="alert-login" id="resetAlert3" style="margin-top:12px;"></div>
+        <div class="alert-login" id="resetAlert3" style="margin-top:12px;display:none;"></div>
       </div>
 
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" id="cancelForgot">Cancel</button>
       <button class="btn btn-primary" id="forgotNextBtn">
-        <i class="fa fa-paper-plane"></i> <span id="forgotNextBtnText">Send OTP</span>
+        <i class="fa fa-paper-plane" id="forgotNextIcon"></i>
+        <span id="forgotNextBtnText">Send OTP</span>
       </button>
     </div>
   </div>
@@ -232,7 +197,9 @@
   <p class="loading-text">Signing you in…</p>
 </div>
 
-<!-- Firebase SDKs -->
+<!-- ══════════════════════════════════════
+     FIREBASE + APP SCRIPT
+══════════════════════════════════════ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import {
@@ -242,14 +209,11 @@
     onAuthStateChanged,
     setPersistence,
     browserLocalPersistence,
-    browserSessionPersistence,
-    confirmPasswordReset,
-    verifyPasswordResetCode
+    browserSessionPersistence
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
   import {
     getFirestore,
     doc,
-    getDoc,
     setDoc,
     serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -268,26 +232,22 @@
   const auth = getAuth(app);
   const db   = getFirestore(app);
 
-  window._firebaseApp  = app;
-  window._firebaseAuth = auth;
-  window._firebaseDB   = db;
-
-  // ── If already logged in → redirect ──
+  // ── Redirect if already logged in ──
   onAuthStateChanged(auth, (user) => {
     if (user) window.location.href = "app.html";
   });
 
-  // ── Alert helpers ──
-  const showAlert = (type, msg) => {
-    const el  = document.getElementById('loginAlert');
-    const txt = document.getElementById('loginAlertMsg');
+  // ════════════════════════
+  //  LOGIN
+  // ════════════════════════
+  const showLoginAlert = (type, msg) => {
+    const el = document.getElementById('loginAlert');
     el.className = `alert-login ${type}`;
-    txt.textContent = msg;
+    document.getElementById('loginAlertMsg').textContent = msg;
     el.style.display = 'flex';
   };
-  const hideAlert = () => { document.getElementById('loginAlert').style.display = 'none'; };
+  const hideLoginAlert = () => { document.getElementById('loginAlert').style.display = 'none'; };
 
-  // ── Toggle password visibility ──
   document.getElementById('togglePassword').addEventListener('click', () => {
     const inp  = document.getElementById('loginPassword');
     const icon = document.getElementById('toggleIcon');
@@ -295,31 +255,30 @@
     else { inp.type = 'password'; icon.className = 'fa fa-eye'; }
   });
 
-  // ── LOGIN ──
   document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    hideAlert();
+    hideLoginAlert();
+
     const email    = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
     const remember = document.getElementById('rememberMe').checked;
     const btn      = document.getElementById('loginBtn');
 
-    if (!email || !password) { showAlert('error', 'Please fill in all fields.'); return; }
+    if (!email || !password) { showLoginAlert('error', 'Please fill in all fields.'); return; }
 
     btn.classList.add('loading');
     btn.disabled = true;
     document.getElementById('loadingOverlay').classList.add('active');
 
     try {
-      const persistence = remember ? browserLocalPersistence : browserSessionPersistence;
-      await setPersistence(auth, persistence);
+      await setPersistence(auth, remember ? browserLocalPersistence : browserSessionPersistence);
       await signInWithEmailAndPassword(auth, email, password);
       window.location.href = "app.html";
     } catch (err) {
       document.getElementById('loadingOverlay').classList.remove('active');
       btn.classList.remove('loading');
       btn.disabled = false;
-      const errorMap = {
+      const msgs = {
         'auth/user-not-found':     'No account found with this email.',
         'auth/wrong-password':     'Incorrect password. Please try again.',
         'auth/invalid-email':      'Please enter a valid email address.',
@@ -327,457 +286,223 @@
         'auth/user-disabled':      'This account has been disabled.',
         'auth/invalid-credential': 'Invalid credentials. Check your email and password.',
       };
-      showAlert('error', errorMap[err.code] || 'Login failed. Please try again.');
+      showLoginAlert('error', msgs[err.code] || 'Login failed. Please try again.');
     }
   });
 
-  // ══════════════════════════════════════
-  //  OTP FORGOT PASSWORD FLOW
-  // ══════════════════════════════════════
-  let otpCurrentStep  = 1;
-  let generatedOTP    = null;
-  let otpExpiry       = null;
-  let otpEmail        = null;
-  let timerInterval   = null;
-  let resendInterval  = null;
+  // ════════════════════════
+  //  OTP FORGOT PASSWORD
+  // ════════════════════════
+  let otpStep       = 1;
+  let generatedOTP  = null;
+  let otpExpiry     = null;
+  let otpEmail      = null;
+  let timerInterval = null;
+  let resendTimer   = null;
+
+  const showOTPAlert = (step, type, msg) => {
+    const el = document.getElementById(`resetAlert${step}`);
+    if (!el) return;
+    const icons = { error: 'fa-circle-exclamation', success: 'fa-circle-check', info: 'fa-circle-info' };
+    el.className = `alert-login ${type}`;
+    el.innerHTML = `<i class="fa ${icons[type]}"></i><span>${msg}</span>`;
+    el.style.display = 'flex';
+  };
+
+  const hideOTPAlert = (step) => {
+    const el = document.getElementById(`resetAlert${step}`);
+    if (el) el.style.display = 'none';
+  };
 
   // Open modal
   document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
     e.preventDefault();
-    resetOTPModal();
+    resetModal();
     document.getElementById('forgotModal').classList.add('active');
     document.getElementById('resetEmail').value = document.getElementById('loginEmail').value;
   });
 
   // Close modal
-  document.getElementById('closeForgotModal').addEventListener('click', closeOTPModal);
-  document.getElementById('cancelForgot').addEventListener('click', closeOTPModal);
-  document.getElementById('forgotModal').addEventListener('click', function(e) {
-    if (e.target === this) closeOTPModal();
-  });
-
-  function closeOTPModal() {
+  const closeModal = () => {
     document.getElementById('forgotModal').classList.remove('active');
     clearInterval(timerInterval);
-    clearInterval(resendInterval);
-  }
+    clearInterval(resendTimer);
+  };
+  document.getElementById('closeForgotModal').addEventListener('click', closeModal);
+  document.getElementById('cancelForgot').addEventListener('click', closeModal);
+  document.getElementById('forgotModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal(); });
 
-  function resetOTPModal() {
-    otpCurrentStep = 1;
-    generatedOTP   = null;
-    otpExpiry      = null;
-    otpEmail       = null;
+  function resetModal() {
+    otpStep = 1;
+    generatedOTP = null;
     clearInterval(timerInterval);
-    clearInterval(resendInterval);
-
+    clearInterval(resendTimer);
     document.getElementById('otpStep1').style.display = 'block';
     document.getElementById('otpStep2').style.display = 'none';
     document.getElementById('otpStep3').style.display = 'none';
     document.getElementById('forgotNextBtnText').textContent = 'Send OTP';
-    document.getElementById('forgotNextBtn').querySelector('i').className = 'fa fa-paper-plane';
+    document.getElementById('forgotNextIcon').className = 'fa fa-paper-plane';
+    document.querySelectorAll('.otp-box').forEach(b => { b.value = ''; b.classList.remove('filled','error'); });
     hideOTPAlert(1); hideOTPAlert(2); hideOTPAlert(3);
-
-    // Clear OTP boxes
-    document.querySelectorAll('.otp-box').forEach(b => {
-      b.value = '';
-      b.classList.remove('filled', 'error');
-    });
   }
 
-  // ── Next button handler ──
+  // Next button
   document.getElementById('forgotNextBtn').addEventListener('click', async () => {
-    if (otpCurrentStep === 1) await handleSendOTP();
-    else if (otpCurrentStep === 2) handleVerifyOTP();
-    else if (otpCurrentStep === 3) await handleResetPassword();
+    if (otpStep === 1)      await sendOTP();
+    else if (otpStep === 2) verifyOTP();
+    else if (otpStep === 3) await resetPassword();
   });
 
   // STEP 1 — Send OTP
-  async function handleSendOTP() {
+  async function sendOTP() {
     const email = document.getElementById('resetEmail').value.trim();
-    if (!email) { showOTPAlert(1, 'error', 'Please enter your email address.'); return; }
-
-    // Email format check
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       showOTPAlert(1, 'error', 'Please enter a valid email address.');
       return;
     }
-
     const btn = document.getElementById('forgotNextBtn');
     btn.disabled = true;
-    btn.innerHTML = `<span class="spinner" style="display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite;"></span>`;
-
+    btn.innerHTML = `<span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block;"></span> Sending...</span>`;
     try {
-      // Generate 6-digit OTP
-      generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
-      otpExpiry    = Date.now() + 5 * 60 * 1000; // 5 minutes
+      generatedOTP = String(Math.floor(100000 + Math.random() * 900000));
+      otpExpiry    = Date.now() + 5 * 60 * 1000;
       otpEmail     = email;
 
-      // Store OTP in Firestore (temporary)
-      await setDoc(doc(db, 'otpCodes', email.replace('@','_').replace('.','_')), {
-        otp:       generatedOTP,
-        expiry:    otpExpiry,
-        email:     email,
-        createdAt: serverTimestamp()
+      await setDoc(doc(db, 'otpCodes', email.replace(/[@.]/g, '_')), {
+        otp: generatedOTP, expiry: otpExpiry, email, createdAt: serverTimestamp()
       });
 
-      // Send via Firebase Password Reset (this sends email)
-      // We also show the OTP in the UI for demo/school purposes
       await sendPasswordResetEmail(auth, email);
 
-      // Move to step 2
-      otpCurrentStep = 2;
+      otpStep = 2;
       document.getElementById('otpStep1').style.display = 'none';
       document.getElementById('otpStep2').style.display = 'block';
       document.getElementById('otpEmailDisplay').textContent = email;
       document.getElementById('forgotNextBtnText').textContent = 'Verify OTP';
-      document.getElementById('forgotNextBtn').querySelector('i').className = 'fa fa-check';
+      document.getElementById('forgotNextIcon').className = 'fa fa-check';
 
-      // Show OTP hint (for school demo — remove in production)
-      showOTPAlert(2, 'info', `📧 Reset email sent! Your demo OTP is: ${generatedOTP}`);
+      // Show OTP for demo/school purposes
+      showOTPAlert(2, 'info', `📧 Email sent! Your demo OTP code is: ${generatedOTP}`);
 
-      startOTPTimer();
-      startResendCountdown();
-      // Focus first OTP box
+      startTimer();
+      startResend();
       document.querySelector('.otp-box[data-index="0"]').focus();
-
     } catch (err) {
-      const msg = err.code === 'auth/user-not-found' ? 'No account found with this email.'
-                : err.code === 'auth/invalid-email'  ? 'Invalid email address.'
-                : err.message;
-      showOTPAlert(1, 'error', msg);
+      const msgs = {
+        'auth/user-not-found': 'No account found with this email.',
+        'auth/invalid-email':  'Invalid email address.',
+      };
+      showOTPAlert(1, 'error', msgs[err.code] || err.message);
     } finally {
       btn.disabled = false;
-      btn.innerHTML = `<i class="fa fa-check"></i> <span id="forgotNextBtnText">Verify OTP</span>`;
+      btn.innerHTML = `<i class="fa fa-check" id="forgotNextIcon"></i> <span id="forgotNextBtnText">Verify OTP</span>`;
     }
   }
 
   // STEP 2 — Verify OTP
-  function handleVerifyOTP() {
+  function verifyOTP() {
     const entered = Array.from(document.querySelectorAll('.otp-box')).map(b => b.value).join('');
+    if (entered.length < 6) { showOTPAlert(2, 'error', 'Please enter the complete 6-digit OTP.'); shakeBoxes(); return; }
+    if (Date.now() > otpExpiry) { showOTPAlert(2, 'error', 'OTP has expired. Please request a new one.'); shakeBoxes(); return; }
+    if (entered !== generatedOTP) { showOTPAlert(2, 'error', 'Incorrect OTP. Please try again.'); shakeBoxes(); return; }
 
-    if (entered.length < 6) {
-      showOTPAlert(2, 'error', 'Please enter the complete 6-digit OTP.');
-      shakeOTPBoxes();
-      return;
-    }
-
-    // Check expiry
-    if (Date.now() > otpExpiry) {
-      showOTPAlert(2, 'error', 'OTP has expired. Please request a new one.');
-      shakeOTPBoxes();
-      return;
-    }
-
-    if (entered !== generatedOTP) {
-      showOTPAlert(2, 'error', 'Incorrect OTP. Please try again.');
-      shakeOTPBoxes();
-      return;
-    }
-
-    // OTP correct!
     clearInterval(timerInterval);
-    document.querySelectorAll('.otp-box').forEach(b => {
-      b.classList.remove('error');
-      b.classList.add('filled');
-    });
+    document.querySelectorAll('.otp-box').forEach(b => { b.classList.remove('error'); b.classList.add('filled'); });
 
-    otpCurrentStep = 3;
+    otpStep = 3;
     setTimeout(() => {
       document.getElementById('otpStep2').style.display = 'none';
       document.getElementById('otpStep3').style.display = 'block';
       document.getElementById('forgotNextBtnText').textContent = 'Reset Password';
-      document.getElementById('forgotNextBtn').querySelector('i').className = 'fa fa-key';
+      document.getElementById('forgotNextIcon').className = 'fa fa-key';
     }, 400);
   }
 
   // STEP 3 — Reset Password
-  async function handleResetPassword() {
-    const newPass     = document.getElementById('newPassword').value;
-    const confirmPass = document.getElementById('confirmPassword').value;
+  async function resetPassword() {
+    const newPass = document.getElementById('newPassword').value;
+    const confPass = document.getElementById('confirmPassword').value;
+    if (!newPass || newPass.length < 6) { showOTPAlert(3, 'error', 'Password must be at least 6 characters.'); return; }
+    if (newPass !== confPass) { showOTPAlert(3, 'error', 'Passwords do not match.'); return; }
 
-    if (!newPass || newPass.length < 6) {
-      showOTPAlert(3, 'error', 'Password must be at least 6 characters.');
-      return;
-    }
-    if (newPass !== confirmPass) {
-      showOTPAlert(3, 'error', 'Passwords do not match.');
-      return;
-    }
-
-    const btn = document.getElementById('forgotNextBtn');
-    btn.disabled = true;
-
-    try {
-      // Use Firebase password reset — user must click email link for actual reset
-      // For school demo: show success and redirect to login
-      showOTPAlert(3, 'success', '✅ Password reset successful! You can now login with your new password. (Check your email for the reset link to apply the change)');
-      btn.disabled = true;
-
-      // Clean up OTP from Firestore
-      try {
-        await setDoc(doc(db, 'otpCodes', otpEmail.replace('@','_').replace('.','_')), { used: true }, { merge: true });
-      } catch {}
-
-      setTimeout(() => {
-        closeOTPModal();
-        document.getElementById('loginEmail').value = otpEmail;
-      }, 3000);
-
-    } catch (err) {
-      showOTPAlert(3, 'error', err.message);
-      btn.disabled = false;
-    }
+    showOTPAlert(3, 'success', '✅ Verified! Check your email for the Firebase reset link to apply your new password.');
+    document.getElementById('forgotNextBtn').disabled = true;
+    setTimeout(() => { closeModal(); document.getElementById('loginEmail').value = otpEmail; }, 3000);
   }
 
-  // ── OTP Timer (5 min countdown) ──
-  function startOTPTimer() {
+  // Timer
+  function startTimer() {
     clearInterval(timerInterval);
-    const timerEl = document.getElementById('otpTimer');
     timerInterval = setInterval(() => {
-      const remaining = otpExpiry - Date.now();
-      if (remaining <= 0) {
+      const rem = otpExpiry - Date.now();
+      if (rem <= 0) {
         clearInterval(timerInterval);
-        timerEl.textContent = '00:00';
-        timerEl.style.color = 'var(--danger)';
-        showOTPAlert(2, 'error', 'OTP expired. Please request a new one.');
+        document.getElementById('otpTimer').textContent = '00:00';
+        document.getElementById('otpTimer').style.color = 'var(--danger)';
         generatedOTP = null;
         return;
       }
-      const mins = Math.floor(remaining / 60000);
-      const secs = Math.floor((remaining % 60000) / 1000);
-      timerEl.textContent = `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
-      timerEl.style.color = remaining < 60000 ? 'var(--danger)' : 'var(--primary)';
+      const m = Math.floor(rem / 60000), s = Math.floor((rem % 60000) / 1000);
+      document.getElementById('otpTimer').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      document.getElementById('otpTimer').style.color = rem < 60000 ? 'var(--danger)' : 'var(--primary)';
     }, 1000);
   }
 
-  // ── Resend countdown (60 sec) ──
-  function startResendCountdown() {
-    const resendBtn = document.getElementById('resendOtpBtn');
-    const countdownEl = document.getElementById('resendCountdown');
+  // Resend countdown
+  function startResend() {
+    clearInterval(resendTimer);
     let secs = 60;
-    resendBtn.disabled = true;
-    clearInterval(resendInterval);
-    resendInterval = setInterval(() => {
+    const btn = document.getElementById('resendOtpBtn');
+    const el  = document.getElementById('resendCountdown');
+    btn.disabled = true;
+    btn.innerHTML = `Resend OTP (<span id="resendCountdown">60</span>s)`;
+    resendTimer = setInterval(() => {
       secs--;
-      countdownEl.textContent = secs;
-      if (secs <= 0) {
-        clearInterval(resendInterval);
-        resendBtn.disabled = false;
-        resendBtn.innerHTML = 'Resend OTP';
-      }
+      document.getElementById('resendCountdown').textContent = secs;
+      if (secs <= 0) { clearInterval(resendTimer); btn.disabled = false; btn.innerHTML = 'Resend OTP'; }
     }, 1000);
   }
 
-  // Resend OTP
-  document.getElementById('resendOtpBtn').addEventListener('click', async () => {
-    otpCurrentStep = 1;
+  document.getElementById('resendOtpBtn').addEventListener('click', () => {
+    otpStep = 1;
     document.getElementById('otpStep2').style.display = 'none';
     document.getElementById('otpStep1').style.display = 'block';
     document.getElementById('resetEmail').value = otpEmail;
     document.getElementById('forgotNextBtnText').textContent = 'Send OTP';
+    document.querySelectorAll('.otp-box').forEach(b => { b.value = ''; b.classList.remove('filled','error'); });
     hideOTPAlert(1); hideOTPAlert(2);
     clearInterval(timerInterval);
-    clearInterval(resendInterval);
-    document.querySelectorAll('.otp-box').forEach(b => { b.value = ''; b.classList.remove('filled','error'); });
+    clearInterval(resendTimer);
   });
 
-  // ── OTP Box keyboard navigation ──
-  document.querySelectorAll('.otp-box').forEach((box, index, boxes) => {
+  // OTP box keyboard navigation
+  document.querySelectorAll('.otp-box').forEach((box, i, boxes) => {
     box.addEventListener('input', (e) => {
       const val = e.target.value.replace(/\D/g, '');
       box.value = val ? val[0] : '';
-      if (box.value) {
-        box.classList.add('filled');
-        box.classList.remove('error');
-        if (index < 5) boxes[index + 1].focus();
-      } else {
-        box.classList.remove('filled');
-      }
+      box.classList.toggle('filled', !!box.value);
+      if (box.value && i < 5) boxes[i + 1].focus();
     });
-
     box.addEventListener('keydown', (e) => {
-      if (e.key === 'Backspace' && !box.value && index > 0) {
-        boxes[index - 1].focus();
-        boxes[index - 1].value = '';
-        boxes[index - 1].classList.remove('filled');
+      if (e.key === 'Backspace' && !box.value && i > 0) {
+        boxes[i - 1].focus();
+        boxes[i - 1].value = '';
+        boxes[i - 1].classList.remove('filled');
       }
       if (e.key === 'Enter') document.getElementById('forgotNextBtn').click();
     });
-
     box.addEventListener('paste', (e) => {
       e.preventDefault();
       const pasted = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 6);
-      boxes.forEach((b, i) => {
-        b.value = pasted[i] || '';
-        if (b.value) b.classList.add('filled');
-        else b.classList.remove('filled');
-      });
-      if (pasted.length === 6) document.getElementById('forgotNextBtn').focus();
-      else boxes[Math.min(pasted.length, 5)].focus();
+      boxes.forEach((b, idx) => { b.value = pasted[idx] || ''; b.classList.toggle('filled', !!b.value); });
+      boxes[Math.min(pasted.length, 5)].focus();
     });
   });
 
-  function shakeOTPBoxes() {
-    document.querySelectorAll('.otp-box').forEach(b => {
-      b.classList.add('error');
-      b.classList.remove('filled');
-    });
+  function shakeBoxes() {
+    document.querySelectorAll('.otp-box').forEach(b => { b.classList.add('error'); b.classList.remove('filled'); });
     setTimeout(() => document.querySelectorAll('.otp-box').forEach(b => b.classList.remove('error')), 600);
   }
-
-  // ── Alert helpers for OTP steps ──
-  function showOTPAlert(step, type, msg) {
-    const el = document.getElementById(`resetAlert${step}`);
-    if (!el) return;
-    const icons = { error: 'fa-circle-exclamation', success: 'fa-circle-check', info: 'fa-circle-info' };
-    el.className = `alert-login ${type}`;
-    el.innerHTML = `<i class="fa ${icons[type] || 'fa-circle-info'}"></i><span>${msg}</span>`;
-    el.style.display = 'flex';
-  }
-
-  function hideOTPAlert(step) {
-    const el = document.getElementById(`resetAlert${step}`);
-    if (el) el.style.display = 'none';
-  }
-</script>
-
-  // ── Firebase Config ──
-  const firebaseConfig = {
-    apiKey:            "AIzaSyBPmbFzWJbCq-8X4KlZr1AomiyRBDhwb0Y",
-    authDomain:        "pizza-bianos-inventory.firebaseapp.com",
-    projectId:         "pizza-bianos-inventory",
-    storageBucket:     "pizza-bianos-inventory.firebasestorage.app",
-    messagingSenderId: "136283753517",
-    appId:             "1:136283753517:web:72a8cf19c03874e0a8fca4"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db   = getFirestore(app);
-
-  // ── Expose globally ──
-  window._firebaseApp  = app;
-  window._firebaseAuth = auth;
-  window._firebaseDB   = db;
-
-  // ── If already logged in → redirect to app ──
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      window.location.href = "app.html";
-    }
-  });
-
-  // ── UI helpers ──
-  const showAlert = (type, msg) => {
-    const el  = document.getElementById('loginAlert');
-    const txt = document.getElementById('loginAlertMsg');
-    el.className = `alert-login ${type}`;
-    txt.textContent = msg;
-    el.style.display = 'flex';
-  };
-
-  const hideAlert = () => {
-    document.getElementById('loginAlert').style.display = 'none';
-  };
-
-  // ── Toggle password ──
-  document.getElementById('togglePassword').addEventListener('click', () => {
-    const inp  = document.getElementById('loginPassword');
-    const icon = document.getElementById('toggleIcon');
-    if (inp.type === 'password') {
-      inp.type = 'text';
-      icon.className = 'fa fa-eye-slash';
-    } else {
-      inp.type = 'password';
-      icon.className = 'fa fa-eye';
-    }
-  });
-
-  // ── Login Form ──
-  document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    hideAlert();
-
-    const email    = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
-    const remember = document.getElementById('rememberMe').checked;
-    const btn      = document.getElementById('loginBtn');
-
-    if (!email || !password) {
-      showAlert('error', 'Please fill in all fields.');
-      return;
-    }
-
-    btn.classList.add('loading');
-    btn.disabled = true;
-    document.getElementById('loadingOverlay').classList.add('active');
-
-    try {
-      const persistence = remember ? browserLocalPersistence : browserSessionPersistence;
-      await setPersistence(auth, persistence);
-      await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "app.html";
-    } catch (err) {
-      document.getElementById('loadingOverlay').classList.remove('active');
-      btn.classList.remove('loading');
-      btn.disabled = false;
-
-      const errorMap = {
-        'auth/user-not-found':      'No account found with this email.',
-        'auth/wrong-password':      'Incorrect password. Please try again.',
-        'auth/invalid-email':       'Please enter a valid email address.',
-        'auth/too-many-requests':   'Too many failed attempts. Please try again later.',
-        'auth/user-disabled':       'This account has been disabled.',
-        'auth/invalid-credential':  'Invalid credentials. Please check your email and password.',
-      };
-      showAlert('error', errorMap[err.code] || 'Login failed. Please try again.');
-    }
-  });
-
-  // ── Forgot Password ──
-  document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('forgotModal').classList.add('active');
-    document.getElementById('resetAlert').style.display = 'none';
-    document.getElementById('resetEmail').value = document.getElementById('loginEmail').value;
-  });
-
-  document.getElementById('closeForgotModal').addEventListener('click', () => {
-    document.getElementById('forgotModal').classList.remove('active');
-  });
-
-  document.getElementById('cancelForgot').addEventListener('click', () => {
-    document.getElementById('forgotModal').classList.remove('active');
-  });
-
-  document.getElementById('sendResetBtn').addEventListener('click', async () => {
-    const email    = document.getElementById('resetEmail').value.trim();
-    const alertEl  = document.getElementById('resetAlert');
-
-    if (!email) {
-      alertEl.className = 'alert-login error';
-      alertEl.innerHTML = '<i class="fa fa-circle-exclamation"></i><span>Please enter your email address.</span>';
-      alertEl.style.display = 'flex';
-      return;
-    }
-
-    try {
-      await sendPasswordResetEmail(auth, email);
-      alertEl.className = 'alert-login success';
-      alertEl.innerHTML = '<i class="fa fa-circle-check"></i><span>Reset link sent! Check your inbox.</span>';
-      alertEl.style.display = 'flex';
-      setTimeout(() => document.getElementById('forgotModal').classList.remove('active'), 3000);
-    } catch (err) {
-      alertEl.className = 'alert-login error';
-      alertEl.innerHTML = `<i class="fa fa-circle-exclamation"></i><span>${err.message}</span>`;
-      alertEl.style.display = 'flex';
-    }
-  });
-
-  // Close modal on outside click
-  document.getElementById('forgotModal').addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('active');
-  });
 </script>
 </body>
 </html>
