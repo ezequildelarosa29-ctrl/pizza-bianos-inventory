@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizza Bianos – Inventory Management System</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- Sidebar Overlay (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ══════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+
+  <div class="sidebar-brand">
+    <div class="brand-icon">🍕</div>
+    <div class="brand-text">
+      <div class="brand-name">Pizza Bianos</div>
+      <div class="brand-sub">Inventory System</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+
+    <div class="nav-item">
+      <a href="#" class="nav-link active" data-page="dashboard">
+        <i class="fa fa-gauge-high nav-icon"></i>
+        <span>Dashboard</span>
+      </a>
+    </div>
+
+    <div class="nav-section-label" style="margin-top:8px;">Inventory</div>
+
+    <div class="nav-item">
+      <a href="#" class="nav-link" data-page="products">
+        <i class="fa fa-boxes-stacked nav-icon"></i>
+        <span>Products</span>
+      </a>
+    </div>
+
+    <div class="nav-item">
+      <a href="#" class="nav-link" data-page="stockin">
+        <i class="fa fa-arrow-down-to-line nav-icon"></i>
+        <span>Stock In</span>
+      </a>
+    </div>
+
+    <div class="nav-item">
+      <a href="#" class="nav-link" data-page="stockout">
+        <i class="fa fa-arrow-up-from-line nav-icon"></i>
+        <span>Stock Out</span>
+      </a>
+    </div>
+
+    <div class="nav-section-label" style="margin-top:8px;">Commerce</div>
+
+    <div class="nav-item">
+      <a href="#" class="nav-link" data-page="sales">
+        <i class="fa fa-receipt nav-icon"></i>
+        <span>Sales</span>
+      </a>
+    </div>
+
+    <div class="nav-section-label" style="margin-top:8px;">Analytics</div>
+
+    <div class="nav-item">
+      <a href="#" class="nav-link" data-page="reports">
+        <i class="fa fa-chart-bar nav-icon"></i>
+        <span>Reports</span>
+      </a>
+    </div>
+
+    <div class="nav-section-label" style="margin-top:8px;">Admin</div>
+
+    <div class="nav-item" id="navUsers">
+      <a href="#" class="nav-link" data-page="users">
+        <i class="fa fa-users nav-icon"></i>
+        <span>Users</span>
+      </a>
+    </div>
+
+    <div class="nav-item">
+      <a href="#" class="nav-link" data-page="settings">
+        <i class="fa fa-gear nav-icon"></i>
+        <span>Settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-user" id="sidebarUserBtn">
+      <div class="user-avatar" id="sidebarAvatar">A</div>
+      <div class="user-info">
+        <div class="user-name" id="sidebarUserName">Admin User</div>
+        <div class="user-role" id="sidebarUserRole">Administrator</div>
+      </div>
+      <i class="fa fa-ellipsis-vertical" style="color:var(--sidebar-text);font-size:13px;"></i>
+    </div>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════ -->
+<div class="main-content">
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="header-left">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="page-title-area">
+        <h1 id="pageTitle">Dashboard</h1>
+        <div class="breadcrumb" id="pageBreadcrumb">Pizza Bianos &rsaquo; Dashboard</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="header-btn" id="notifBtn" title="Notifications" aria-label="Notifications">
+        <i class="fa fa-bell"></i>
+        <span class="badge" id="notifBadge" style="display:none">0</span>
+      </button>
+      <div class="header-admin" id="headerAdminBtn">
+        <div class="admin-avatar" id="headerAvatar">A</div>
+        <span class="admin-name" id="headerAdminName">Admin</span>
+        <i class="fa fa-chevron-down" style="font-size:11px;color:var(--gray-400);"></i>
+      </div>
+      <button class="btn-logout" id="logoutBtn">
+        <i class="fa fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════
+       PAGE: DASHBOARD
+  ════════════════════════════════ -->
+  <main class="page-content active" id="page-dashboard">
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card blue">
+        <div class="stat-header">
+          <span class="stat-label">Total Products</span>
+          <div class="stat-icon"><i class="fa fa-boxes-stacked"></i></div>
+        </div>
+        <div class="stat-value" id="statTotalProducts">—</div>
+        <div class="stat-change neutral"><i class="fa fa-database"></i> All items</div>
+      </div>
+
+      <div class="stat-card orange">
+        <div class="stat-header">
+          <span class="stat-label">Low Stock Items</span>
+          <div class="stat-icon"><i class="fa fa-triangle-exclamation"></i></div>
+        </div>
+        <div class="stat-value" id="statLowStock">—</div>
+        <div class="stat-change down"><i class="fa fa-arrow-down"></i> Needs reorder</div>
+      </div>
+
+      <div class="stat-card green">
+        <div class="stat-header">
+          <span class="stat-label">Stock In (Today)</span>
+          <div class="stat-icon"><i class="fa fa-arrow-down-to-line"></i></div>
+        </div>
+        <div class="stat-value" id="statStockInToday">—</div>
+        <div class="stat-change up"><i class="fa fa-arrow-up"></i> Today</div>
+      </div>
+
+      <div class="stat-card red">
+        <div class="stat-header">
+          <span class="stat-label">Stock Out (Today)</span>
+          <div class="stat-icon"><i class="fa fa-arrow-up-from-line"></i></div>
+        </div>
+        <div class="stat-value" id="statStockOutToday">—</div>
+        <div class="stat-change neutral"><i class="fa fa-arrow-up"></i> Today</div>
+      </div>
+
+      <div class="stat-card purple">
+        <div class="stat-header">
+          <span class="stat-label">Sales (Today)</span>
+          <div class="stat-icon"><i class="fa fa-peso-sign"></i></div>
+        </div>
+        <div class="stat-value" id="statSalesToday">—</div>
+        <div class="stat-change up"><i class="fa fa-arrow-up"></i> Today</div>
+      </div>
+    </div>
+
+    <!-- Chart + Recent Transactions -->
+    <div class="dashboard-row">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><span class="dot"></span>Stock Summary by Product</span>
+          <select class="filter-select" id="chartFilter" style="font-size:0.8rem;padding:6px 10px;">
+            <option value="all">All Products</option>
+          </select>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="stockChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><span class="dot"></span>Recent Transactions</span>
+          <a href="#" class="text-primary text-sm" data-page="stockin" style="font-weight:600;">View All</a>
+        </div>
+        <div class="card-body" style="padding:0 22px;">
+          <div class="transaction-list" id="recentTransactions">
+            <div class="empty-state" style="padding:30px 10px;">
+              <div class="empty-icon">📋</div>
+              <p>No recent transactions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Low Stock Alert Table -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title"><span class="dot" style="background:var(--warning)"></span>Low Stock Alerts</span>
+        <a href="#" class="btn btn-sm btn-warning" data-page="products">
+          <i class="fa fa-eye"></i> View Products
+        </a>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Current Stock</th>
+                <th>Reorder Level</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="lowStockTable">
+              <tr><td colspan="5" class="text-muted" style="text-align:center;padding:24px;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════════════════════════════
+       PAGE: PRODUCTS
+  ════════════════════════════════ -->
+  <main class="page-content" id="page-products">
+    <div class="page-toolbar">
+      <div class="toolbar-left">
+        <div class="search-box">
+          <i class="fa fa-search search-icon"></i>
+          <input type="text" id="productSearch" placeholder="Search products…" />
+        </div>
+        <select class="filter-select" id="productCategoryFilter">
+          <option value="">All Categories</option>
+          <option>Ingredients</option>
+          <option>Beverages</option>
+          <option>Packaging</option>
+          <option>Vegetables</option>
+          <option>Others</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" id="addProductBtn">
+        <i class="fa fa-plus"></i> Add Product
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="sortable">Product Name</th>
+              <th>Category</th>
+              <th>Supplier</th>
+              <th>Quantity</th>
+              <th>Unit</th>
+              <th>Reorder Level</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="productsTableBody">
+            <tr><td colspan="9" class="text-muted" style="text-align:center;padding:40px;">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-footer">
+        <span class="table-info" id="productsTableInfo">Showing 0 records</span>
+        <div class="pagination" id="productsPagination"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════════════════════════════
+       PAGE: STOCK IN
+  ════════════════════════════════ -->
+  <main class="page-content" id="page-stockin">
+    <div class="page-toolbar">
+      <div class="toolbar-left">
+        <div class="search-box">
+          <i class="fa fa-search search-icon"></i>
+          <input type="text" id="stockInSearch" placeholder="Search stock in records…" />
+        </div>
+        <input type="date" class="filter-select" id="stockInDateFilter" />
+      </div>
+      <button class="btn btn-primary" id="addStockInBtn">
+        <i class="fa fa-plus"></i> New Stock In
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>SI Number</th>
+              <th>Date</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Supplier</th>
+              <th>Received By</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="stockInTableBody">
+            <tr><td colspan="8" class="text-muted" style="text-align:center;padding:40px;">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-footer">
+        <span class="table-info" id="stockInTableInfo">Showing 0 records</span>
+        <div class="pagination" id="stockInPagination"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════════════════════════════
+       PAGE: STOCK OUT
+  ════════════════════════════════ -->
+  <main class="page-content" id="page-stockout">
+    <div class="page-toolbar">
+      <div class="toolbar-left">
+        <div class="search-box">
+          <i class="fa fa-search search-icon"></i>
+          <input type="text" id="stockOutSearch" placeholder="Search stock out records…" />
+        </div>
+        <input type="date" class="filter-select" id="stockOutDateFilter" />
+      </div>
+      <button class="btn btn-primary" id="addStockOutBtn">
+        <i class="fa fa-plus"></i> New Stock Out
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>SO Number</th>
+              <th>Date</th>
+              <th>Product</th>
+              <th>Customer</th>
+              <th>Quantity</th>
+              <th>Used For</th>
+              <th>Requested By</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="stockOutTableBody">
+            <tr><td colspan="9" class="text-muted" style="text-align:center;padding:40px;">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-footer">
+        <span class="table-info" id="stockOutTableInfo">Showing 0 records</span>
+        <div class="pagination" id="stockOutPagination"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════════════════════════════
+       PAGE: SALES
+  ════════════════════════════════ -->
+  <main class="page-content" id="page-sales">
+    <div class="page-toolbar">
+      <div class="toolbar-left">
+        <div class="search-box">
+          <i class="fa fa-search search-icon"></i>
+          <input type="text" id="salesSearch" placeholder="Search sales records…" />
+        </div>
+        <input type="date" class="filter-select" id="salesDateFilter" />
+        <select class="filter-select" id="salesPaymentFilter">
+          <option value="">All Payments</option>
+          <option>Cash</option>
+          <option>GCash</option>
+          <option>Credit Card</option>
+          <option>Others</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" id="addSaleBtn">
+        <i class="fa fa-plus"></i> New Sale
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Invoice #</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total Amount</th>
+              <th>Payment</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="salesTableBody">
+            <tr><td colspan="8" class="text-muted" style="text-align:center;padding:40px;">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-footer">
+        <span class="table-info" id="salesTableInfo">Showing 0 records</span>
+        <div class="pagination" id="salesPagination"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════════════════════════════
+       PAGE: REPORTS
+  ════════════════════════════════ -->
+  <main class="page-content" id="page-reports">
+
+    <!-- Date Range Filter -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-body" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:600;color:var(--gray-700);">
+          <i class="fa fa-calendar"></i> Date Range:
+        </div>
+        <input type="date" class="filter-select" id="reportDateFrom" />
+        <span style="color:var(--gray-400);">to</span>
+        <input type="date" class="filter-select" id="reportDateTo" />
+        <button class="btn btn-primary" id="generateReportBtn">
+          <i class="fa fa-chart-line"></i> Generate
+        </button>
+        <button class="btn btn-secondary" id="exportReportBtn">
+          <i class="fa fa-file-export"></i> Export CSV
+        </button>
+      </div>
+    </div>
+
+    <!-- Report Cards -->
+    <div class="report-cards-grid">
+      <div class="report-card" id="rptStockIn">
+        <div class="report-card-icon green"><i class="fa fa-arrow-down-to-line"></i></div>
+        <div>
+          <h3>Stock In Report</h3>
+          <p>View all incoming stock movements and supplier transactions within selected date range.</p>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;">
+          <span class="badge badge-success" id="rptStockInCount">0 records</span>
+          <button class="btn btn-sm btn-secondary" onclick="App.showReportDetail('stockin')">
+            <i class="fa fa-eye"></i> View Details
+          </button>
+        </div>
+      </div>
+
+      <div class="report-card" id="rptStockOut">
+        <div class="report-card-icon red"><i class="fa fa-arrow-up-from-line"></i></div>
+        <div>
+          <h3>Stock Out Report</h3>
+          <p>Track outgoing stock usage, wastage, and customer-requested movements.</p>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;">
+          <span class="badge badge-danger" id="rptStockOutCount">0 records</span>
+          <button class="btn btn-sm btn-secondary" onclick="App.showReportDetail('stockout')">
+            <i class="fa fa-eye"></i> View Details
+          </button>
+        </div>
+      </div>
+
+      <div class="report-card" id="rptSales">
+        <div class="report-card-icon orange"><i class="fa fa-receipt"></i></div>
+        <div>
+          <h3>Sales Report</h3>
+          <p>Summary of all sales transactions, revenue, and payment methods used.</p>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;">
+          <span class="badge badge-warning" id="rptSalesCount">0 records</span>
+          <button class="btn btn-sm btn-secondary" onclick="App.showReportDetail('sales')">
+            <i class="fa fa-eye"></i> View Details
+          </button>
+        </div>
+      </div>
+
+      <div class="report-card" id="rptLowStock">
+        <div class="report-card-icon blue"><i class="fa fa-triangle-exclamation"></i></div>
+        <div>
+          <h3>Low Stock Report</h3>
+          <p>Products that have fallen below their reorder level and require restocking.</p>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;">
+          <span class="badge badge-info" id="rptLowStockCount">0 items</span>
+          <button class="btn btn-sm btn-secondary" onclick="App.showReportDetail('lowstock')">
+            <i class="fa fa-eye"></i> View Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Report Charts -->
+    <div class="dashboard-row">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><span class="dot"></span>Sales Trend</span>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="salesTrendChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><span class="dot" style="background:var(--info)"></span>Summary</span>
+        </div>
+        <div class="card-body">
+          <div id="reportSummaryBox">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--gray-50);border-radius:var(--radius-md);">
+                <span style="font-size:0.85rem;color:var(--gray-600);">Total Stock In</span>
+                <span class="text-bold" id="summaryStockIn">—</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--gray-50);border-radius:var(--radius-md);">
+                <span style="font-size:0.85rem;color:var(--gray-600);">Total Stock Out</span>
+                <span class="text-bold" id="summaryStockOut">—</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--gray-50);border-radius:var(--radius-md);">
+                <span style="font-size:0.85rem;color:var(--gray-600);">Total Sales</span>
+                <span class="text-bold text-primary" id="summarySales">—</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--gray-50);border-radius:var(--radius-md);">
+                <span style="font-size:0.85rem;color:var(--gray-600);">Low Stock Items</span>
+                <span class="text-bold text-warning" id="summaryLowStock">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report Detail Table -->
+    <div class="table-wrapper" id="reportDetailSection" style="display:none;">
+      <div class="card-header" style="padding:16px 20px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;">
+        <span class="card-title"><span class="dot"></span><span id="reportDetailTitle">Report Detail</span></span>
+        <button class="btn btn-sm btn-secondary" id="closeReportDetail">
+          <i class="fa fa-xmark"></i> Close
+        </button>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr id="reportDetailHeader"></tr></thead>
+          <tbody id="reportDetailBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════════════════════════════
+       PAGE: USERS + SETTINGS
+  ════════════════════════════════ -->
+  <main class="page-content" id="page-users">
+    <div class="users-settings-grid">
+
+      <!-- Users Table -->
+      <div>
+        <div class="page-toolbar" style="margin-bottom:16px;">
+          <div class="toolbar-left">
+            <div class="search-box">
+              <i class="fa fa-search search-icon"></i>
+              <input type="text" id="usersSearch" placeholder="Search users…" />
+            </div>
+          </div>
+          <button class="btn btn-primary" id="addUserBtn">
+            <i class="fa fa-plus"></i> Add User
+          </button>
+        </div>
+
+        <div class="table-wrapper">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+                <tr><td colspan="6" class="text-muted" style="text-align:center;padding:40px;">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-footer">
+            <span class="table-info" id="usersTableInfo">Showing 0 records</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Panel -->
+      <div id="page-settings-panel">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title"><span class="dot"></span>Store Settings</span>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div class="form-field">
+                <label>Store Name</label>
+                <input type="text" class="form-control" id="settingsStoreName" placeholder="e.g. Pizza Bianos" />
+              </div>
+              <div class="form-field">
+                <label>Store Address</label>
+                <textarea class="form-control" id="settingsAddress" rows="2" placeholder="Full store address"></textarea>
+              </div>
+              <div class="form-field">
+                <label>Contact Number</label>
+                <input type="text" class="form-control" id="settingsContact" placeholder="09XX XXX XXXX" />
+              </div>
+              <div class="form-field">
+                <label>Currency</label>
+                <select class="form-control" id="settingsCurrency">
+                  <option value="PHP">PHP (₱)</option>
+                  <option value="USD">USD ($)</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Low Stock Threshold</label>
+                <input type="number" class="form-control" id="settingsLowStock" placeholder="e.g. 10" min="1" />
+              </div>
+              <button class="btn btn-primary w-full" id="saveSettingsBtn">
+                <i class="fa fa-floppy-disk"></i> Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Settings standalone page -->
+  <main class="page-content" id="page-settings">
+    <!-- Redirect to users+settings page -->
+  </main>
+
+</div><!-- /.main-content -->
+
+<!-- ════════════════════════════════════
+     MODALS
+════════════════════════════════════ -->
+
+<!-- Product Modal -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3>
+        <span class="modal-icon"><i class="fa fa-box"></i></span>
+        <span id="productModalTitle">Add Product</span>
+      </h3>
+      <button class="modal-close" data-close="productModal"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="productId" />
+      <div class="form-grid">
+        <div class="form-field span-2">
+          <label>Product Name <span class="required">*</span></label>
+          <input type="text" class="form-control" id="productName" placeholder="Enter product name" />
+        </div>
+        <div class="form-field">
+          <label>Category <span class="required">*</span></label>
+          <select class="form-control" id="productCategory">
+            <option value="">Select category</option>
+            <option>Ingredients</option>
+            <option>Beverages</option>
+            <option>Packaging</option>
+            <option>Vegetables</option>
+            <option>Others</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Supplier</label>
+          <input type="text" class="form-control" id="productSupplier" placeholder="Enter supplier name" />
+        </div>
+        <div class="form-field">
+          <label>Quantity <span class="required">*</span></label>
+          <input type="number" class="form-control" id="productQuantity" placeholder="Enter quantity" min="0" />
+        </div>
+        <div class="form-field">
+          <label>Unit <span class="required">*</span></label>
+          <input type="text" class="form-control" id="productUnit" placeholder="e.g. pcs, kg, liter" />
+        </div>
+        <div class="form-field">
+          <label>Reorder Level</label>
+          <input type="number" class="form-control" id="productReorderLevel" placeholder="e.g. 10" min="0" />
+        </div>
+        <div class="form-field">
+          <label>Unit Price (₱)</label>
+          <input type="number" class="form-control" id="productPrice" placeholder="0.00" min="0" step="0.01" />
+        </div>
+        <div class="form-field span-2">
+          <label>Description / Notes</label>
+          <textarea class="form-control" id="productDescription" rows="2" placeholder="Optional notes..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-close="productModal">Cancel</button>
+      <button class="btn btn-primary" id="saveProductBtn">
+        <i class="fa fa-floppy-disk"></i> Save Product
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Stock In Modal -->
+<div class="modal-overlay" id="stockInModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3>
+        <span class="modal-icon" style="background:#EAFAF1;color:var(--success)"><i class="fa fa-arrow-down-to-line"></i></span>
+        <span id="stockInModalTitle">New Stock In</span>
+      </h3>
+      <button class="modal-close" data-close="stockInModal"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="stockInId" />
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Date <span class="required">*</span></label>
+          <input type="date" class="form-control" id="stockInDate" />
+        </div>
+        <div class="form-field">
+          <label>Product <span class="required">*</span></label>
+          <select class="form-control" id="stockInProduct">
+            <option value="">Select product</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Quantity <span class="required">*</span></label>
+          <input type="number" class="form-control" id="stockInQty" placeholder="Enter quantity" min="1" />
+        </div>
+        <div class="form-field">
+          <label>Supplier</label>
+          <input type="text" class="form-control" id="stockInSupplier" placeholder="Supplier name" />
+        </div>
+        <div class="form-field span-2">
+          <label>Notes</label>
+          <textarea class="form-control" id="stockInNotes" rows="2" placeholder="Optional notes..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-close="stockInModal">Cancel</button>
+      <button class="btn btn-success" id="saveStockInBtn">
+        <i class="fa fa-floppy-disk"></i> Save Stock In
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Stock Out Modal -->
+<div class="modal-overlay" id="stockOutModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3>
+        <span class="modal-icon" style="background:#FDEDEC;color:var(--danger)"><i class="fa fa-arrow-up-from-line"></i></span>
+        <span id="stockOutModalTitle">New Stock Out</span>
+      </h3>
+      <button class="modal-close" data-close="stockOutModal"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="stockOutId" />
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Date <span class="required">*</span></label>
+          <input type="date" class="form-control" id="stockOutDate" />
+        </div>
+        <div class="form-field">
+          <label>Product <span class="required">*</span></label>
+          <select class="form-control" id="stockOutProduct">
+            <option value="">Select product</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Customer / Requester</label>
+          <input type="text" class="form-control" id="stockOutCustomer" placeholder="Walk-in Customer" />
+        </div>
+        <div class="form-field">
+          <label>Quantity <span class="required">*</span></label>
+          <input type="number" class="form-control" id="stockOutQty" placeholder="Enter quantity" min="1" />
+        </div>
+        <div class="form-field">
+          <label>Used For</label>
+          <input type="text" class="form-control" id="stockOutUsedFor" placeholder="e.g. Order #1025" />
+        </div>
+        <div class="form-field">
+          <label>Requested By</label>
+          <input type="text" class="form-control" id="stockOutRequestedBy" placeholder="Staff name" />
+        </div>
+        <div class="form-field span-2">
+          <label>Notes</label>
+          <textarea class="form-control" id="stockOutNotes" rows="2" placeholder="Optional notes..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-close="stockOutModal">Cancel</button>
+      <button class="btn btn-danger" id="saveStockOutBtn">
+        <i class="fa fa-floppy-disk"></i> Save Stock Out
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Sale Modal -->
+<div class="modal-overlay" id="saleModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3>
+        <span class="modal-icon" style="background:#FEF9E7;color:var(--accent)"><i class="fa fa-receipt"></i></span>
+        <span id="saleModalTitle">New Sale</span>
+      </h3>
+      <button class="modal-close" data-close="saleModal"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="saleId" />
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Date <span class="required">*</span></label>
+          <input type="date" class="form-control" id="saleDate" />
+        </div>
+        <div class="form-field">
+          <label>Customer Name</label>
+          <input type="text" class="form-control" id="saleCustomer" placeholder="Walk-in Customer" />
+        </div>
+        <div class="form-field">
+          <label>Items / Description <span class="required">*</span></label>
+          <input type="text" class="form-control" id="saleItems" placeholder="e.g. 2x Pizza Margherita" />
+        </div>
+        <div class="form-field">
+          <label>Number of Items</label>
+          <input type="number" class="form-control" id="saleItemCount" placeholder="0" min="1" />
+        </div>
+        <div class="form-field">
+          <label>Total Amount (₱) <span class="required">*</span></label>
+          <input type="number" class="form-control" id="saleTotalAmount" placeholder="0.00" min="0" step="0.01" />
+        </div>
+        <div class="form-field">
+          <label>Payment Method <span class="required">*</span></label>
+          <select class="form-control" id="salePayment">
+            <option value="">Select payment</option>
+            <option>Cash</option>
+            <option>GCash</option>
+            <option>Credit Card</option>
+            <option>Others</option>
+          </select>
+        </div>
+        <div class="form-field span-2">
+          <label>Notes</label>
+          <textarea class="form-control" id="saleNotes" rows="2" placeholder="Optional notes..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-close="saleModal">Cancel</button>
+      <button class="btn btn-primary" id="saveSaleBtn">
+        <i class="fa fa-floppy-disk"></i> Save Sale
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- User Modal -->
+<div class="modal-overlay" id="userModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>
+        <span class="modal-icon"><i class="fa fa-user-plus"></i></span>
+        <span id="userModalTitle">Add User</span>
+      </h3>
+      <button class="modal-close" data-close="userModal"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="userId" />
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="form-field">
+          <label>Username <span class="required">*</span></label>
+          <input type="text" class="form-control" id="userUsername" placeholder="Enter username" />
+        </div>
+        <div class="form-field">
+          <label>Email <span class="required">*</span></label>
+          <input type="email" class="form-control" id="userEmail" placeholder="Enter email address" />
+        </div>
+        <div class="form-field" id="userPasswordField">
+          <label>Password <span class="required">*</span></label>
+          <input type="password" class="form-control" id="userPassword" placeholder="Min. 6 characters" />
+          <span class="form-hint">Leave blank to keep current password (when editing)</span>
+        </div>
+        <div class="form-field">
+          <label>Role <span class="required">*</span></label>
+          <select class="form-control" id="userRole">
+            <option value="">Select role</option>
+            <option value="Administrator">Administrator</option>
+            <option value="Cashier">Cashier</option>
+            <option value="Staff">Staff</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Status</label>
+          <select class="form-control" id="userStatus">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-close="userModal">Cancel</button>
+      <button class="btn btn-primary" id="saveUserBtn">
+        <i class="fa fa-floppy-disk"></i> Save User
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header">
+      <h3>
+        <span class="modal-icon" style="background:#FDEDEC;color:var(--danger)"><i class="fa fa-trash"></i></span>
+        Confirm Delete
+      </h3>
+      <button class="modal-close" data-close="deleteModal"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.9rem;color:var(--gray-600);" id="deleteMessage">
+        Are you sure you want to delete this record? This action cannot be undone.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-close="deleteModal">Cancel</button>
+      <button class="btn btn-danger" id="confirmDeleteBtn">
+        <i class="fa fa-trash"></i> Delete
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- View Detail Modal -->
+<div class="modal-overlay" id="viewModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3>
+        <span class="modal-icon"><i class="fa fa-eye"></i></span>
+        <span id="viewModalTitle">Record Details</span>
+      </h3>
+      <button class="modal-close" data-close="viewModal"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="viewModalBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-close="viewModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loader"></div>
+  <p class="loading-text" id="loadingText">Loading…</p>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+<!-- Firebase SDKs -->
+<script type="module" src="js/firebase-config.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
