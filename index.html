@@ -307,6 +307,8 @@
     el.className = `alert-login ${type}`;
     el.innerHTML = `<i class="fa ${icons[type]}"></i><span>${msg}</span>`;
     el.style.display = 'flex';
+    el.style.alignItems = 'center';
+    el.style.flexWrap = 'wrap';
   };
 
   const hideOTPAlert = (step) => {
@@ -360,43 +362,36 @@
       showOTPAlert(1, 'error', 'Please enter a valid email address.');
       return;
     }
+
     const btn = document.getElementById('forgotNextBtn');
     btn.disabled = true;
     btn.innerHTML = `<span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block;"></span> Sending...</span>`;
-    try {
-      generatedOTP = String(Math.floor(100000 + Math.random() * 900000));
-      otpExpiry    = Date.now() + 5 * 60 * 1000;
-      otpEmail     = email;
 
-      await setDoc(doc(db, 'otpCodes', email.replace(/[@.]/g, '_')), {
-        otp: generatedOTP, expiry: otpExpiry, email, createdAt: serverTimestamp()
-      });
+    // Generate OTP immediately — no Firestore needed
+    generatedOTP = String(Math.floor(100000 + Math.random() * 900000));
+    otpExpiry    = Date.now() + 5 * 60 * 1000;
+    otpEmail     = email;
 
-      await sendPasswordResetEmail(auth, email);
+    // Try sending Firebase reset email (optional — may fail silently)
+    try { await sendPasswordResetEmail(auth, email); } catch {}
 
-      otpStep = 2;
-      document.getElementById('otpStep1').style.display = 'none';
-      document.getElementById('otpStep2').style.display = 'block';
-      document.getElementById('otpEmailDisplay').textContent = email;
-      document.getElementById('forgotNextBtnText').textContent = 'Verify OTP';
-      document.getElementById('forgotNextIcon').className = 'fa fa-check';
+    // Always go to step 2 regardless
+    otpStep = 2;
+    document.getElementById('otpStep1').style.display = 'none';
+    document.getElementById('otpStep2').style.display = 'block';
+    document.getElementById('otpEmailDisplay').textContent = email;
 
-      // Show OTP for demo/school purposes
-      showOTPAlert(2, 'info', `📧 Email sent! Your demo OTP code is: ${generatedOTP}`);
+    btn.disabled = false;
+    btn.innerHTML = `<i class="fa fa-check" id="forgotNextIcon"></i> <span id="forgotNextBtnText">Verify OTP</span>`;
+    document.getElementById('forgotNextBtnText').textContent = 'Verify OTP';
+    document.getElementById('forgotNextIcon').className = 'fa fa-check';
 
-      startTimer();
-      startResend();
-      document.querySelector('.otp-box[data-index="0"]').focus();
-    } catch (err) {
-      const msgs = {
-        'auth/user-not-found': 'No account found with this email.',
-        'auth/invalid-email':  'Invalid email address.',
-      };
-      showOTPAlert(1, 'error', msgs[err.code] || err.message);
-    } finally {
-      btn.disabled = false;
-      btn.innerHTML = `<i class="fa fa-check" id="forgotNextIcon"></i> <span id="forgotNextBtnText">Verify OTP</span>`;
-    }
+    startTimer();
+    startResend();
+    document.querySelector('.otp-box[data-index="0"]').focus();
+
+    // Show OTP code prominently
+    showOTPAlert(2, 'info', `🔑 Your OTP Code: <strong style="font-size:1.4rem;letter-spacing:6px;color:var(--primary)">${generatedOTP}</strong>`);
   }
 
   // STEP 2 — Verify OTP
